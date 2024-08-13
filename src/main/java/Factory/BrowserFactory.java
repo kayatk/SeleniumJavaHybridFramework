@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 import DataProvider.ConfigReader;
 
@@ -24,12 +27,24 @@ public class BrowserFactory {
             driver= new ChromeDriver(opt);
         }
         else if (browser.equalsIgnoreCase("Firefox")) {
+            FirefoxOptions opt =new FirefoxOptions();
+            if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
+                opt.addArguments("--headless=new");
+            }
             driver= new FirefoxDriver();
         }
         else if (browser.equalsIgnoreCase("Edge")) {
+            EdgeOptions opt =new EdgeOptions();
+            if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
+                opt.addArguments("--headless=new");
+            }
             driver= new EdgeDriver();
         }
         else if(browser.equalsIgnoreCase("Safari")){
+            SafariOptions opt =new SafariOptions();
+            if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
+                opt.addArguments("--headless=new");
+            }
             driver= new SafariDriver();
         }
        

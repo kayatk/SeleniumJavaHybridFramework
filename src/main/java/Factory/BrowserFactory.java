@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -16,7 +17,11 @@ public class BrowserFactory {
         WebDriver driver=null;
 
         if(browser.equalsIgnoreCase("Chrome")){
-            driver= new ChromeDriver();
+            ChromeOptions opt =new ChromeOptions();
+            if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
+                opt.addArguments("--headless=new");
+            }
+            driver= new ChromeDriver(opt);
         }
         else if (browser.equalsIgnoreCase("Firefox")) {
             driver= new FirefoxDriver();

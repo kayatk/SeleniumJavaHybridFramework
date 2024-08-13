@@ -43,7 +43,7 @@ public class BrowserFactory {
         else if(browser.equalsIgnoreCase("Safari")){
             SafariOptions opt =new SafariOptions();
             if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
-                opt.addArguments("--headless=new");
+              //  opt.addArguments("--headless=new");
             }
             driver= new SafariDriver(opt);
         }

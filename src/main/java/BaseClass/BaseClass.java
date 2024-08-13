@@ -14,7 +14,7 @@ public class BaseClass {
     @BeforeMethod
     public void setUp(){
         System.out.println("LOG INFO: Start Browser - Before Method");
-        driver =BrowserFactory.startBrowser(ConfigReader.getProperty("browserName"),ConfigReader.getProperty("appURL")+"/login");
+        driver =BrowserFactory.startBrowser(ConfigReader.getProperty("browserName"),(ConfigReader.getProperty("appURL"))+"/login");
         System.out.println("LOG INFO: Browser UP and Loaded the URL");
     }
 

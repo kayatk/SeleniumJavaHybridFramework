@@ -6,7 +6,8 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage {
 
     WebDriver driver;
-    public void LoginPage(WebDriver driver){
+    
+    public LoginPage(WebDriver driver){
         this.driver=driver;
     }
     private By username = By.xpath("");

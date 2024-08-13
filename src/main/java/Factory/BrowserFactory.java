@@ -31,21 +31,21 @@ public class BrowserFactory {
             if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
                 opt.addArguments("--headless=new");
             }
-            driver= new FirefoxDriver();
+            driver= new FirefoxDriver(opt);
         }
         else if (browser.equalsIgnoreCase("Edge")) {
             EdgeOptions opt =new EdgeOptions();
             if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
                 opt.addArguments("--headless=new");
             }
-            driver= new EdgeDriver();
+            driver= new EdgeDriver(opt);
         }
         else if(browser.equalsIgnoreCase("Safari")){
             SafariOptions opt =new SafariOptions();
             if (ConfigReader.getProperty("headless").equalsIgnoreCase("true")) {
                 opt.addArguments("--headless=new");
             }
-            driver= new SafariDriver();
+            driver= new SafariDriver(opt);
         }
        
        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("pageLoadWait"))));

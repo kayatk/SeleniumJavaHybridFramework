@@ -1,13 +1,12 @@
 package BaseClass;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import DataProvider.ConfigReader;
 import Factory.BrowserFactory;
 
-import java.time.Duration;
 
 public class BaseClass {
    public WebDriver driver;
@@ -15,12 +14,14 @@ public class BaseClass {
     @BeforeMethod
     public void setUp(){
         System.out.println("LOG INFO: Start Browser - Before Method");
-        BrowserFactory.startBrowser("Chrome","https://freelance-learn-automation.vercel.app/login");
+        driver =BrowserFactory.startBrowser(ConfigReader.getProperty("browserName"),ConfigReader.getProperty("appURL")+"/login");
         System.out.println("LOG INFO: Browser UP and Loaded the URL");
     }
 
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        System.out.println("LOG INFO: Closing the Browser - After Method");
+        BrowserFactory.closeBrowser(driver);
+        System.out.println("LOG INFO: Session Closed");
     }
 }

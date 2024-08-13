@@ -33,5 +33,9 @@ public class BrowserFactory {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
     }
+
+    public static void closeBrowser(WebDriver driver){
+        driver.quit();
+    }
     
 }

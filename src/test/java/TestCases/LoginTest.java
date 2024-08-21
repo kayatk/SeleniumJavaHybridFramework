@@ -3,16 +3,18 @@ package TestCases;
 import org.testng.annotations.Test;
 
 import BaseClass.BaseClass;
+import DataProvider.ExcelReader;
 import Pages.LoginPage;
 
 public class LoginTest extends BaseClass {
     LoginPage login;
 
-    @Test
-    public void verifyLogin(){
+    @Test(dataProvider ="LoginDetail",dataProviderClass = ExcelReader.class)
+    public void verifyLogin(String userName, String password){
 
         login =new LoginPage(driver);
         System.out.println("LOG INFO: Into the Login Method");
+        System.out.println(userName+password);
     }
     
 }

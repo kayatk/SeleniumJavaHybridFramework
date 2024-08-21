@@ -5,28 +5,28 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;
 
 public class ExcelReader {
-    public Workbook wb;
-    
-    @DataProvider(name ="")
-    public static Object[][] generateTestDataFromExcel(){
+   
+   static Workbook wb;
+    @DataProvider(name ="LoginDetail")
+    public static Object[][] generateTestDataFromExcel() throws IOException{
         System.out.println("LOG INFO: ");
-        Object arr [][] =ExcelReader.getDataFromExcel("");
+        Object arr [][] =ExcelReader.getDataFromExcel("Login");
         return arr;
     }
     
-    public static Object[][] getDataFromExcel(String sheetName){
+    public static Object[][] getDataFromExcel(String sheetName) throws IOException{
+       
         try {
-            wb = new XSSFWorkbook(new FileInputStream(new File("")));
+         wb = new XSSFWorkbook(new FileInputStream(new File("src/main/resources/TestData.xlsx")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } 
         int row=wb.getSheet(sheetName).getPhysicalNumberOfRows();
         int column=wb.getSheet(sheetName).getRow(0).getPhysicalNumberOfCells();
         Object [][]arr = new Object[row-1][column];
@@ -39,31 +39,30 @@ public class ExcelReader {
        wb.close();
         return arr;
     }
+
+    
     public static String getData(String sheetName,int row,int column)
 	{
 		String value="";
-		CellType type=wb.getSheet(sheetName).getRow(row).getCell(column).getCellType();
+        CellType type=wb.getSheet(sheetName).getRow(row).getCell(column).getCellType();
 		if(type==CellType.NUMERIC)
-		{
-			double dValue=wb.getSheet(sheetName).getRow(row).getCell(column).getNumericCellValue();
-			value=String.valueOf(dValue);
-		}
+            {
+                double dValue=wb.getSheet(sheetName).getRow(row).getCell(column).getNumericCellValue();
+                value=String.valueOf(dValue);
+            }
 		else if(type==CellType.BOOLEAN)
-		{
-			boolean bValue=wb.getSheet(sheetName).getRow(row).getCell(column).getBooleanCellValue();
-			
-			value=String.valueOf(bValue);
-		}
+            {
+                boolean bValue=wb.getSheet(sheetName).getRow(row).getCell(column).getBooleanCellValue();
+                value=String.valueOf(bValue);
+            }
 		else if(type==CellType.STRING)
-		{
-			value=wb.getSheet(sheetName).getRow(row).getCell(column).getStringCellValue();
-		}
+            {
+                value=wb.getSheet(sheetName).getRow(row).getCell(column).getStringCellValue();
+            }
 		else if(type==CellType.BLANK)
-		{
-			value="";
-		}
-		
-		return value;
-		
+            {
+                value="";
+            }
+		return value;	
 	}
 }

@@ -1,16 +1,11 @@
 package Listeners;
 
 import org.testng.ITestContext;
-import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-
 import DataProvider.ConfigReader;
-import Factory.BrowserFactory;
-import Utilities.Utility;
+
 
 
 public class ReportListener {

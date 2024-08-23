@@ -16,5 +16,12 @@ public class LoginTest extends BaseClass {
         System.out.println("LOG INFO: Into the Login Method");
         System.out.println(userName+password);
     }
+    @Test(dataProvider ="LoginDetail",dataProviderClass = ExcelReader.class)
+    public void verifyLogins(String userName, String password){
+
+        login =new LoginPage(driver);
+        System.out.println("LOG INFO: Into the Login Method");
+        System.out.println(userName+password);
+    }
     
 }

@@ -1,11 +1,16 @@
 package Listeners;
 
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import DataProvider.ConfigReader;
+import com.aventstack.extentreports.MediaEntityBuilder;
 
+import DataProvider.ConfigReader;
+import Factory.BrowserFactory;
+import Utilities.Utility;
 
 
 public class ReportListener {
@@ -21,7 +26,7 @@ public class ReportListener {
 
 	public void onTestSuccess(ITestResult result) {
 		if(ConfigReader.getProperty("screenshotOnSuccess").equalsIgnoreCase("true")){
-			test.get().pass("Test Passed");
+			test.get().pass("Test Passed",MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.captureScreenshotAsBase64(BrowserFactory.getDriver())).build());
 		}
 		else{
 			test.get().pass("Test Passed");
@@ -31,7 +36,8 @@ public class ReportListener {
 	public void onTestFailure(ITestResult result) 
 	{
 		if(ConfigReader.getProperty("screenshotOnFailure").equalsIgnoreCase("true")){
-			test.get().fail("Test Failed");}
+			test.get().fail("Test Failed "+result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.captureScreenshotAsBase64(BrowserFactory.getDriver())).build());
+		}
 		else{
 			test.get().fail("Test Failed "+result.getThrowable().getMessage());
 		}
@@ -39,9 +45,10 @@ public class ReportListener {
 
 	public void onTestSkipped(ITestResult result) {
 		if(ConfigReader.getProperty("screenshotOnSkip").equalsIgnoreCase("true")){
-			test.get().pass("Test Skipped");
+			test.get().pass("Test Skipped",MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.captureScreenshotAsBase64(BrowserFactory.getDriver())).build());
 		}
-		else{
+		else
+		{
 			test.get().skip("Test Skipped");
 		}
 	}

@@ -16,6 +16,8 @@ import DataProvider.ConfigReader;
 
 public class BrowserFactory {
 
+
+
     public static WebDriver startBrowser(String browser,String appURL){
         WebDriver driver=null;
 

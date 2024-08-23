@@ -5,6 +5,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 //import com.ots.utility.Utility;
 
+import Utilities.Utility;
+
 public class ExtentManager {
     static ExtentReports extent;
 	
@@ -23,7 +25,7 @@ public class ExtentManager {
 	
 	public static ExtentReports createInstance()
 	{
-		ExtentSparkReporter sparkReporter=new ExtentSparkReporter("./Reports/Automation_Report_"+Utility.getDateTime()+".html");
+		ExtentSparkReporter sparkReporter=new ExtentSparkReporter("Reports/Automation_Report_"+Utility.getDateTime()+".html");
 		sparkReporter.config().setTheme(Theme.DARK);
 		sparkReporter.config().setReportName("Sprint 1 Report");
 		sparkReporter.config().setDocumentTitle("Automation Report");

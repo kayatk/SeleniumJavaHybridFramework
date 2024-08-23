@@ -41,8 +41,13 @@
             <artifactId>reportng</artifactId>
             <version>1.2.2</version>
             <scope>test</scope>
-     </dependency>
-
+        </dependency>
+        <!-- pom.xml -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.1</version>
+        </dependency>
     </dependencies>
 
     <properties>

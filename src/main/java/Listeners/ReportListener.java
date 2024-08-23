@@ -26,7 +26,7 @@ public class ReportListener {
 
 	public void onTestSuccess(ITestResult result) {
 		if(ConfigReader.getProperty("screenshotOnSuccess").equalsIgnoreCase("true")){
-			test.get().pass("Test Passed",MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.captureScreenshotAsBase64(BrowserFactory.getDriver())).build());
+			test.get().pass("Test Passed");
 		}
 		else{
 			test.get().pass("Test Passed");
@@ -36,8 +36,7 @@ public class ReportListener {
 	public void onTestFailure(ITestResult result) 
 	{
 		if(ConfigReader.getProperty("screenshotOnFailure").equalsIgnoreCase("true")){
-			test.get().fail("Test Failed "+result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.captureScreenshotAsBase64(BrowserFactory.getDriver())).build());
-		}
+			test.get().fail("Test Failed");}
 		else{
 			test.get().fail("Test Failed "+result.getThrowable().getMessage());
 		}
@@ -45,7 +44,7 @@ public class ReportListener {
 
 	public void onTestSkipped(ITestResult result) {
 		if(ConfigReader.getProperty("screenshotOnSkip").equalsIgnoreCase("true")){
-			test.get().pass("Test Skipped",MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.captureScreenshotAsBase64(BrowserFactory.getDriver())).build());
+			test.get().pass("Test Skipped");
 		}
 		else{
 			test.get().skip("Test Skipped");
